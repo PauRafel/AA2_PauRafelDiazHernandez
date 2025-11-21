@@ -16,6 +16,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{fd490a45-1f72-475d-8afc-8fed6d44ef52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{db0fc9c8-dbb7-4f73-9da8-bbfd8dabb5b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +30,12 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
@@ -37,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="KeyCodes.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
