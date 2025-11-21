@@ -24,9 +24,15 @@
     <ClCompile Include="ConsoleControl.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
       <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
