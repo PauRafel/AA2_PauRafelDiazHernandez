@@ -33,6 +33,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
@@ -45,6 +48,9 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
