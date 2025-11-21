@@ -2,7 +2,9 @@
 
 int main()
 {
-    std::cout << "Inicio del proyecto!" << std::endl;
+    std::cout << "=== DUNGEON CRAWLER ===" << std::endl;
+    std::cout << "Project initialized..." << std::endl;
 
+    std::cin.get();
     return 0;
 }
