@@ -19,6 +19,9 @@
     <Filter Include="Core">
       <UniqueIdentifier>{db0fc9c8-dbb7-4f73-9da8-bbfd8dabb5b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{6180e223-c394-4f84-9a94-68ae1d920f76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +39,15 @@
     <ClCompile Include="Map.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
@@ -51,6 +63,15 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

@@ -124,15 +124,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleControl.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="KeyCodes.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
