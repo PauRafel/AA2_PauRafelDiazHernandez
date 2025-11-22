@@ -54,6 +54,9 @@
     <ClCompile Include="WorldManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
@@ -81,6 +84,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="WorldManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
