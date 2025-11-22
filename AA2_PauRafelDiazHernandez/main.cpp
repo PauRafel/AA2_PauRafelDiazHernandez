@@ -5,53 +5,43 @@
 #include "GameUI.h"
 #include "Player.h"
 #include "Timer.h"
+#include "WorldManager.h"
 
 int main()
 {
     CC::Clear();
 
-    Map* gameMap = new Map(30, 20, 2, 2);
-
+    WorldManager* world = new WorldManager(3, 3);
     Player* player = new Player(15, 10);
-    gameMap->SetTile(player->GetX(), player->GetY(), TileType::PLAYER);
-
-    gameMap->SetTile(15, 1, TileType::PORTAL_UP);
-    gameMap->SetTile(15, 18, TileType::PORTAL_DOWN);
-    gameMap->SetTile(1, 10, TileType::PORTAL_LEFT);
-    gameMap->SetTile(28, 10, TileType::PORTAL_RIGHT);
-
-    for (int i = 5; i < 15; i++)
-    {
-        gameMap->SetTile(10, i, TileType::WALL);
-    }
-
-    gameMap->SetTile(5, 5, TileType::CHEST);
-    gameMap->SetTile(20, 15, TileType::ITEM);
-
     GameUI* ui = new GameUI(35, 2);
 
-    gameMap->DrawFullMap();
+    world->DrawCurrentMap();
+    world->GetCurrentMap()->SetTile(player->GetX(), player->GetY(), TileType::PLAYER);
+    world->GetCurrentMap()->DrawTile(player->GetX(), player->GetY());
     ui->DrawPlayerStats(player);
 
-
     CC::SetPosition(35, 15);
-    CC::SetColor(CC::GREEN);
-    std::cout << "[TEST]";
-
+    CC::SetColor(CC::YELLOW);
+    std::cout << "=== CONTROLS ===";
     CC::SetPosition(35, 16);
     CC::SetColor(CC::WHITE);
-    std::cout << "Press 1: Add coins";
+    std::cout << "WASD - Move";
     CC::SetPosition(35, 17);
-    std::cout << "Press 2: Use potion";
+    std::cout << "SPACE - Use Potion";
     CC::SetPosition(35, 18);
-    std::cout << "Press 3: Take damage";
-    CC::SetPosition(35, 19);
-    std::cout << "Press 4: Change weapon";
+    std::cout << "ESC - Exit";
+
+    CC::SetPosition(35, 20);
+    CC::SetColor(CC::CYAN);
+    std::cout << "Walk into portals";
+    CC::SetPosition(35, 21);
+    std::cout << "to change rooms!";
 
     CC::SetPosition(0, 24);
+    CC::SetColor(CC::WHITE);
     std::cout << "Press ESC to exit...";
 
-    //Test loop
+    //Game loop
     bool running = true;
     while (running)
     {
@@ -61,40 +51,71 @@ int main()
         {
             running = false;
         }
-        else if (key == K_1)
+        else if ((key == K_W || key == K_A || key == K_S || key == K_D) && player->CanMove())
         {
-            player->AddCoins(10);
-            ui->DrawPlayerStats(player);
-            ui->DrawMessage("+ 10 coins!", 0);
-        }
-        else if (key == K_2)
-        {
-            player->UsePotion();
-            ui->DrawPlayerStats(player);
-            ui->DrawMessage("Potion used!", 0);
-        }
-        else if (key == K_3)
-        {
-            player->TakeDamage(2);
-            ui->DrawPlayerStats(player);
-            ui->DrawMessage("Took 2 damage!", 0);
-        }
-        else if (key == K_4)
-        {
-            if (player->GetWeapon() == WeaponType::SWORD)
-                player->SetWeapon(WeaponType::SPEAR);
-            else
-                player->SetWeapon(WeaponType::SWORD);
+            int newX = player->GetX();
+            int newY = player->GetY();
 
-            ui->DrawPlayerStats(player);
-            ui->DrawMessage("Weapon changed!", 0);
+            if (key == K_W) newY--;
+            else if (key == K_S) newY++;
+            else if (key == K_A) newX--;
+            else if (key == K_D) newX++;
+
+            Map* currentMap = world->GetCurrentMap();
+
+            if (currentMap->IsValidPosition(newX, newY))
+            {
+                Tile* targetTile = currentMap->GetTile(newX, newY);
+
+                if (targetTile->IsPortal())
+                {
+                    currentMap->SetTile(player->GetX(), player->GetY(), TileType::EMPTY);
+                    currentMap->DrawTile(player->GetX(), player->GetY());
+
+                    if (world->ChangeMap(targetTile->type, newX, newY))
+                    {
+                        world->DrawCurrentMap();
+                        player->SetPosition(newX, newY);
+                        ui->DrawPlayerStats(player); 
+                        ui->DrawMessage("Changed room!", 0);
+                    }
+
+                    currentMap = world->GetCurrentMap();
+                }
+                else if (currentMap->IsWalkable(newX, newY))
+                {
+                    currentMap->SetTile(player->GetX(), player->GetY(), TileType::EMPTY);
+                    currentMap->DrawTile(player->GetX(), player->GetY());
+
+                    player->SetPosition(newX, newY);
+                }
+
+                currentMap->SetTile(player->GetX(), player->GetY(), TileType::PLAYER);
+                currentMap->DrawTile(player->GetX(), player->GetY());
+
+                player->UpdateMoveTime();
+            }
+        }
+        else if (key == K_SPACE)
+        {
+            int oldHealth = player->GetHealth();
+            player->UsePotion();
+            if (player->GetHealth() > oldHealth)
+            {
+                ui->DrawPlayerStats(player);
+                ui->DrawMessage("Used potion!", 0);
+            }
+            else
+            {
+                ui->DrawMessage("No potions!", 0);
+            }
         }
 
         Timer::SleepThread(50);
     }
 
     delete player;
-    delete gameMap;
+    delete world;
     delete ui;
 
     return 0;

@@ -22,6 +22,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{6180e223-c394-4f84-9a94-68ae1d920f76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{188d0045-75c7-4617-b42a-f1519a2a9296}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="GameUI.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="WorldManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleControl.h">
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="GameUI.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
